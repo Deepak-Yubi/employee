@@ -1,0 +1,39 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="insert-department-employee" author="user3">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="department"/>
+            <tableExists tableName="employee"/>
+        </preConditions>
+
+        <insert tableName="department">
+            <column name="departmentid" value="2"/>
+            <column name="departmentname" value="Salesss"/>
+            <column name="departmentlocation" value="New York"/>
+            <column name="departmenthead" value="John Doe"/>
+        </insert>
+    </changeSet>
+    <changeSet id="alter_table" author="user1">
+        <addColumn tableName="department">
+            <column name="departmentsize" type="INT">
+            <!-- <defaultValue value="0"/> -->
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet id="add_default" author="user4">
+        <addDefaultValue tableName="department" columnName="departmentsize" defaultValue="0"/>
+    </changeSet>
+    <changeSet id="add_value" author="user5">
+        <sql>
+            UPDATE department SET departmentsize = 0 WHERE departmentsize IS NULL;
+        </sql>
+    </changeSet>
+    <changeSet id="add_constraint" author="user4">
+                <addNotNullConstraint tableName="department" columnName="departmentsize" columnDataType="INT"/>
+    </changeSet>
+
+
+</databaseChangeLog>

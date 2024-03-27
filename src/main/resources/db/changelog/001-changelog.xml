@@ -1,0 +1,45 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                                       http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="create_employee_table" author="user1">
+        <createTable tableName="employee">
+            <column name="employeeid" type="INT" autoIncrement="true">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="employee_name" type="VARCHAR(255)"/>
+            <column name="departmentid" type="INT">
+                <!-- <constraints foreignKeyName="fk_employee_department" -->
+                             <!-- references="department(departmentid)"/> -->
+            </column>
+            <column name="date_of_joining" type="DATE"/>
+            <column name="status" type="VARCHAR(20)"/>
+        </createTable>
+    </changeSet>
+     <changeSet id="alter_table" author="user1">
+        <addColumn tableName="employee">
+            <column name="salary" type="INT"/>
+        </addColumn>
+    </changeSet>
+    <changeSet id="add_check_constraint" author="user5">
+        <sql>
+        ALTER TABLE employee
+        ADD CONSTRAINT check_status CHECK (status IN ('Active', 'Inactive', 'On Leave'));
+        </sql>
+    </changeSet>
+    <changeSet id="v3" author="user1">
+        <addNotNullConstraint tableName="employee" columnName="departmentid" columnDataType="BIGINT"/>
+    </changeSet>
+    <changeSet id="v3add_foreign_key" author="user1">
+        <addForeignKeyConstraint baseTableName="employee"
+                                 baseColumnNames="departmentid"
+                                 constraintName="fk_employee_department"
+                                 referencedTableName="department"
+                                 referencedColumnNames="departmentid"
+                                 onDelete="CASCADE"
+                                 onUpdate="CASCADE"/>
+    </changeSet>
+
+
+</databaseChangeLog>

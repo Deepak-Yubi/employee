@@ -1,0 +1,57 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="alter_employee_table" author="user3">
+        <addColumn tableName="employee">
+            <column name="designation" type="varchar(255)"/>
+            <column name="address" type="varchar(255)"/>
+        </addColumn>
+        <rollback>
+            <dropColumn tableName="employee" columnName="designation"/>
+            <dropColumn tableName="employee" columnName="address"/>
+        </rollback>
+    </changeSet>
+    <changeSet id="add_check_constraint" author="user5">
+        <sql>
+        ALTER TABLE employee
+        ADD CONSTRAINT check_designation CHECK (designation IN ('Manager', 'Employee', 'Intern'));
+        </sql>
+        <rollback>
+            ALTER TABLE employee DROP CONSTRAINT check_designation;
+        </rollback>
+    </changeSet>
+    <!-- <changeSet id="v3_add_row" author="user1">
+        <insert tableName="employee">
+            <column name="employeeid" value="2"/>
+            <column name="employee_name" value="Jane Doe"/>
+            <column name="departmentid" value="4"/>
+            <column name="date_of_joining" value="2020-01-01"/>
+            <column name="status" value="Active"/>
+            <column name="salary" value="50000"/>
+            <column name="designation" value="Manager"/>
+            <column name="address" value="New York"/>
+        </insert>
+        <rollback>
+            <delete tableName="employee">
+                <where>employeeid = 2</where>
+            </delete>
+        </rollback>
+    </changeSet> -->
+    <changeSet id="v3_add_constraint_employee_salary" author="user1">
+        <sql><![CDATA[
+        ALTER TABLE employee
+        ADD CONSTRAINT check_salary 
+        CHECK (salary > 10000 AND salary < 100000);
+        ]]></sql>
+        <rollback>
+            ALTER TABLE employee DROP CONSTRAINT check_salary;
+        </rollback>
+    </changeSet>
+    <changeSet id="v3_drop_constraint_employee_salary" author="user7">
+        <sql>
+            ALTER TABLE employee DROP CONSTRAINT check_salary;
+        </sql>
+    </changeSet>
+
+</databaseChangeLog>

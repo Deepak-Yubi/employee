@@ -1,0 +1,25 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.0.xsd">
+
+    
+
+    <changeSet id="createDepartmentTable" author="your_name">
+        <createTable tableName="department">
+            <column name="departmentid" type="BIGINT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="departmentname" type="VARCHAR(255)">
+                <constraints nullable="false"  unique="true"/>
+            </column>
+            <column name="departmentlocation" type="VARCHAR(255)"/>
+            <column name="departmenthead" type="VARCHAR(255)">
+                <!-- <constraints nullable="false"/> -->
+                <!-- <references columnName="employeeid" foreignTableName="employee"/> -->
+            </column>
+        </createTable>
+    </changeSet>
+
+
+</databaseChangeLog>

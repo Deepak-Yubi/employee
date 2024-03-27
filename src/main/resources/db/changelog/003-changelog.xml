@@ -1,0 +1,26 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="insert-department-employee" author="user3">
+        <preConditions onFail="MARK_RAN">
+            <tableExists tableName="department"/>
+            <tableExists tableName="employee"/>
+        </preConditions>
+
+        <insert tableName="department">
+            <column name="departmentid" value="1"/>
+            <column name="departmentname" value="Sales"/>
+            <column name="departmentlocation" value="New York"/>
+            <column name="departmenthead" value="John Doe"/>
+        </insert>
+
+        <insert tableName="employee">
+            <column name="employeeid" value="1"/>
+            <column name="employee_name" value="John Doe"/>
+            <column name="departmentid" value="1"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>
