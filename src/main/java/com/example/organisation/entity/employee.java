@@ -35,9 +35,8 @@ public class employee {
 
     private String employee_name;
 
-    // @ManyToOne
-    // @JoinColumn(name = "departmentid")
-    // private department dept;
+
+    private long department_id;
 
     @Temporal(TemporalType.DATE)
     private Date date_of_joining;

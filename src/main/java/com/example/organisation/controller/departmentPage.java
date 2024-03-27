@@ -33,6 +33,7 @@ public class departmentPage {
 
     @DeleteMapping("/department/{id}")
     public String deleteDepartmentById(@PathVariable Long id) {
+        System.out.println(" Delete mapping id: " + id);
         departmentService.deleteDepartmentById(id);
         return "Department deleted successfully";
     }

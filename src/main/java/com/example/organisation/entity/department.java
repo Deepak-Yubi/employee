@@ -13,10 +13,12 @@ import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import lombok.*;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-
 import java.util.List;
+
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
+
+import java.util.ArrayList;
 
 @Entity
 @Data
@@ -36,7 +38,7 @@ public class department {
     @NonNull
     private String departmentname;
 
-    private employee departmenthead;
+    private String departmenthead;
 
     private String departmentlocation;
 
@@ -44,7 +46,8 @@ public class department {
 
     @OneToMany(targetEntity = employee.class, cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name="department_id", referencedColumnName = "departmentid")
-    private List<employee> employees;
+    @JdbcTypeCode(SqlTypes.JSON)
+    private List<employee> employees = new ArrayList<>();
 
 
 

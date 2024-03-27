@@ -53,5 +53,8 @@
             ALTER TABLE employee DROP CONSTRAINT check_salary;
         </sql>
     </changeSet>
+    <changeSet id="v3_drop_nullconstraint_departmentid" author="user1">
+        <dropNotNullConstraint tableName="employee" columnName="department_id" columnDataType="BIGINT"/>
+    </changeSet>
 
 </databaseChangeLog>

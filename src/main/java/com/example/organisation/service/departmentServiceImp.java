@@ -41,6 +41,7 @@ public class departmentServiceImp implements departmentService {
 
     @Override
     public void deleteDepartmentById(Long departmentId) {
+        System.out.println("departmentId: " + departmentId);
         departmentRepository.deleteById( departmentId);
     }
 
