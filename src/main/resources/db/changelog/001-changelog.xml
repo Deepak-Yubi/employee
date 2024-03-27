@@ -9,7 +9,7 @@
                 <constraints primaryKey="true"/>
             </column>
             <column name="employee_name" type="VARCHAR(255)"/>
-            <column name="departmentid" type="INT">
+            <column name="department_id" type="INT">
                 <!-- <constraints foreignKeyName="fk_employee_department" -->
                              <!-- references="department(departmentid)"/> -->
             </column>
@@ -29,17 +29,9 @@
         </sql>
     </changeSet>
     <changeSet id="v3" author="user1">
-        <addNotNullConstraint tableName="employee" columnName="departmentid" columnDataType="BIGINT"/>
+        <addNotNullConstraint tableName="employee" columnName="department_id" columnDataType="BIGINT"/>
     </changeSet>
-    <changeSet id="v3add_foreign_key" author="user1">
-        <addForeignKeyConstraint baseTableName="employee"
-                                 baseColumnNames="departmentid"
-                                 constraintName="fk_employee_department"
-                                 referencedTableName="department"
-                                 referencedColumnNames="departmentid"
-                                 onDelete="CASCADE"
-                                 onUpdate="CASCADE"/>
-    </changeSet>
+    
 
 
 </databaseChangeLog>

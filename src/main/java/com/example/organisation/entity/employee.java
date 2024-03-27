@@ -35,9 +35,9 @@ public class employee {
 
     private String employee_name;
 
-    @ManyToOne
-    @JoinColumn(name = "departmentid")
-    private department dept;
+    // @ManyToOne
+    // @JoinColumn(name = "departmentid")
+    // private department dept;
 
     @Temporal(TemporalType.DATE)
     private Date date_of_joining;
@@ -50,11 +50,10 @@ public class employee {
 
     private int salary;
 
-    public employee(long employeeId, String employeeName, department departt, Date dateOfJoining, String status,
+    public employee(long employeeId, String employeeName, Date dateOfJoining, String status,
             String designation, String address, int salary) {
         this.employeeid = employeeId;
         this.employee_name = employeeName;
-        this.dept = departt;
         this.date_of_joining = dateOfJoining;
         this.status = status;
         this.designation = designation;

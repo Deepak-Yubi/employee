@@ -19,7 +19,7 @@
         <insert tableName="employee">
             <column name="employeeid" value="1"/>
             <column name="employee_name" value="John Doe"/>
-            <column name="departmentid" value="1"/>
+            <column name="department_id" value="1"/>
         </insert>
     </changeSet>
 

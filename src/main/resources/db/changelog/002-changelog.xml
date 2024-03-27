@@ -21,5 +21,15 @@
         </createTable>
     </changeSet>
 
+    <changeSet id="v3add_foreign_key" author="user1">
+        <addForeignKeyConstraint baseTableName="employee"
+                                 baseColumnNames="department_id"
+                                 constraintName="fk_employee_department"
+                                 referencedTableName="department"
+                                 referencedColumnNames="departmentid"
+                                 onDelete="CASCADE"
+                                 onUpdate="CASCADE"/>
+    </changeSet>
+
 
 </databaseChangeLog>

@@ -1,17 +1,22 @@
 package com.example.organisation.entity;
 
+import com.example.organisation.entity.employee;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.UniqueConstraint;
 import lombok.*;
 
-
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Data
@@ -31,19 +36,15 @@ public class department {
     @NonNull
     private String departmentname;
 
-    private String departmenthead;
+    private employee departmenthead;
 
     private String departmentlocation;
 
     private int departmentsize;
 
-    public department(long departmentId, String departmentName, String departmentHead , String departmentLocation) {
-        this.departmentid = departmentId;
-        this.departmentname = departmentName;
-        this.departmenthead = departmentHead;
-        this.departmentlocation = departmentLocation;
-    }
-
+    @OneToMany(targetEntity = employee.class, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name="department_id", referencedColumnName = "departmentid")
+    private List<employee> employees;
 
 
 
